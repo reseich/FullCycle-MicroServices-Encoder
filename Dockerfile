@@ -4,7 +4,7 @@ ENV PATH="$PATH:/bin/bash" \
     PATH="$PATH:/opt/bento4/bin"
 
 # FFMPEG
-RUN apk add --update ffmpeg bash curl make
+RUN apk add --update ffmpeg bash curl make git
 
 # Install Bento
 WORKDIR /tmp/bento4
