@@ -11,6 +11,7 @@ require (
 	github.com/satori/go.uuid v1.2.0
 	github.com/sirupsen/logrus v1.8.1
 	github.com/spf13/cobra v1.2.1
+	github.com/streadway/amqp v1.0.0
 	github.com/stretchr/testify v1.7.0
 	golang.org/x/tools v0.1.3
 	google.golang.org/genproto v0.0.0-20210624174822-c5cf32407d0a

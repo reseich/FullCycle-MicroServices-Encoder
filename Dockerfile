@@ -30,4 +30,4 @@ RUN apk add --update --upgrade curl python unzip bash gcc g++ scons && \
 
 WORKDIR /go/src
 
-ENTRYPOINT [ "top" ]
+CMD [ "top" ]

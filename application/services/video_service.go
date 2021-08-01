@@ -135,3 +135,12 @@ func (v *VideoService) Finish() error {
 	logrus.Printf("Files %s removed", v.Video.ID)
 	return nil
 }
+
+func (v *VideoService) InsertVideo() error {
+	_, err := v.VideoRepository.Insert(v.Video)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

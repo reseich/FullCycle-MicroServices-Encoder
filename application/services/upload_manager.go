@@ -114,7 +114,6 @@ func (vu *VideoUpload) ProcessUpload(concurrency int, doneUpload chan string) er
 func (vu *VideoUpload) uploadWorker(in chan int, returnChan chan string, uploadClient *storage.Client, ctx context.Context) {
 	for x := range in {
 		err := vu.UploadObject(vu.Paths[x], uploadClient, ctx)
-		logrus.Printf("File %s ", vu.Paths[x])
 		if err != nil {
 			vu.Errors = append(vu.Errors, vu.Paths[x])
 			logrus.Printf("erro during the upload: %s, Error:%v", vu.Paths[x], err)

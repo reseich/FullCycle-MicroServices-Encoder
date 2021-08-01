@@ -1,6 +1,7 @@
 package services_test
 
 import (
+	"os"
 	"testing"
 	"time"
 
@@ -15,7 +16,7 @@ import (
 )
 
 func init() {
-	err := godotenv.Load("../../../.env")
+	err := godotenv.Load("../../.env")
 	if err != nil {
 		logrus.Fatalf("Error loading .env file")
 	}
@@ -42,7 +43,7 @@ func TestVideoServiceDownload(t *testing.T) {
 	videoService.Video = video
 	videoService.VideoRepository = repo
 
-	err := videoService.Download("encoder-fullcycle-storage")
+	err := videoService.Download(os.Getenv("INPUT_BUCKET_NAME"))
 
 	require.Nil(t, err)
 

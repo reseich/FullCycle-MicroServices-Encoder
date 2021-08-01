@@ -11,7 +11,7 @@ import (
 )
 
 func init() {
-	err := godotenv.Load("../../../.env")
+	err := godotenv.Load("../../.env")
 	if err != nil {
 		logrus.Fatalf("Error loading .env file")
 	}
@@ -24,7 +24,7 @@ func TestVideoServiceUpload(t *testing.T) {
 	videoService.Video = video
 	videoService.VideoRepository = repo
 
-	err := videoService.Download("encoder-fullcycle-storage")
+	err := videoService.Download(os.Getenv("INPUT_BUCKET_NAME"))
 
 	require.Nil(t, err)
 
@@ -37,7 +37,7 @@ func TestVideoServiceUpload(t *testing.T) {
 	require.Nil(t, err)
 
 	videoUpload := services.NewVideoUpload()
-	videoUpload.OutputBucket = "encoder-fullcycle-storage"
+	videoUpload.OutputBucket = os.Getenv("INPUT_BUCKET_NAME")
 	videoUpload.VideoPath = os.Getenv("LOCAL_STORAGE_PATH") + "/" + video.ID
 
 	doneUpload := make(chan string)
@@ -46,8 +46,4 @@ func TestVideoServiceUpload(t *testing.T) {
 	result := <-doneUpload
 
 	require.Equal(t, result, "Upload Completed")
-
-	err = videoService.Finish()
-
-	require.Nil(t, err)
 }

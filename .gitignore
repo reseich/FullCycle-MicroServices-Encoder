@@ -11,6 +11,7 @@
 *.dylib
 .env
 bucket-credential.json
+.pgdata
 
 # Test binary, built with `go test -c`
 *.test
